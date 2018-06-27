@@ -7,22 +7,16 @@
     padding-right: 15%;
 }
 
+#drawpad-handler {
+    position: relative;
+    alignment: center;
+}
+
 #drawpad {
     position: relative;
     border: 1px solid black;
     background: #333333;
     display: block;
-}
-
-#drawpad-handler {
-    position: relative;
-    margin: 1%;
-}
-
-#btns-handler {
-    position: relative;
-    alignment: center;
-    margin: 1%;
 }
 
 #btn {
@@ -36,7 +30,11 @@
     text-align: center;
 }
 
-#result {
-    border: 1px solid black;
-    background: #333333;
+#result-handler {
+    position: relative;
+    alignment: center;
+}
+
+#text-result {
+    alignment: left;
 }

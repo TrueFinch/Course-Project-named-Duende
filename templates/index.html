@@ -24,26 +24,21 @@
         <div class="collapse navbar-collapse" id="navbar1">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a href="index.html" class="nav-link">Digit recognizer<span class="sr-only">(current)</span></a>
+                    <a href="index.html" class="nav-link">Recognizer<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a href="about.html" class="nav-link">About the project<span class="sr-only">(current)</span></a>
+                    <a href="about.html" class="nav-link">About<span class="sr-only">(current)</span></a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 <div id="mainframe" class="container-fluid">
-    <div class="row">
-        <div class="col-md-5 col-sm-6" id="drawpad-handler">
+    <div class="row" style="margin-top: 2%">
+        <div class="col-md-5 col-sm-9" id="drawpad-handler">
             <div align="center">
                 <canvas id="drawpad" width="200px" height="200px"></canvas>
             </div>
-        </div>
-        <img id="result">
-    </div>
-    <div class="row">
-        <div class="col-md-5 col-sm-6" id="btns-handler">
             <div align="center">
                 <button type="button" class="btn btn-danger" onclick="clearCanvas();" id="btn">
                     clear
@@ -53,6 +48,27 @@
                 </button>
             </div>
         </div>
+        <div class="col-md-4 col-sm-9" id="result-handler">
+            <div style="alignment: left">
+                <h2 style="border-bottom: solid"><strong>Result:</strong></h2>
+                <div id="text-result">
+                    <p>Hmm I think, it's fuck you digit. Am I wrong?</p>
+                    <img id="result">
+                </div>
+            </div>
+            <div style="alignment: left">
+                <button type="button" class="btn btn-success" id="btn">
+                    Yes
+                </button>
+                <button type="button" class="btn btn-danger" onclick="saveImg();" id="btn">
+                    No
+                </button>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-9" id="check_answer"
+    </div>
+    <div class="row">
+
     </div>
 </div>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
