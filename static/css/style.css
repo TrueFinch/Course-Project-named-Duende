@@ -1,0 +1,42 @@
+* {
+    font-family: sans-serif;
+}
+
+#mainframe {
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+#drawpad {
+    position: relative;
+    border: 1px solid black;
+    background: #333333;
+    display: block;
+}
+
+#drawpad-handler {
+    position: relative;
+    margin: 1%;
+}
+
+#btns-handler {
+    position: relative;
+    alignment: center;
+    margin: 1%;
+}
+
+#btn {
+    max-width: 90px;
+    max-height: 40px;
+    min-width: 70px;
+    min-height: 12px;
+    width: 25%;
+    height: 5%;
+    margin: 2%;
+    text-align: center;
+}
+
+#result {
+    border: 1px solid black;
+    background: #333333;
+}

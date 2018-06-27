@@ -4,10 +4,8 @@ import json
 app = Flask(__name__)
 
 
-# model = Model()
-
-
 @app.route('/')
+@app.route('/index.html')
 def index():
     return render_template("index.html")
 

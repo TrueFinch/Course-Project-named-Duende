@@ -8,13 +8,13 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
           integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/css/style.css">
     <title>Project Duende</title>
 </head>
 <body>
 <nav class="navbar navbar-fixed-top sticky-top navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a href="/" class="navbar-brand">
+    <div id="mainframe" class="container-fluid">
+        <a href="index.html" class="navbar-brand">
             <img src="../static/logo.svg" alt="Duende project" width="40" height="40">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1"
@@ -24,7 +24,7 @@
         <div class="collapse navbar-collapse" id="navbar1">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a href="/" class="nav-link">Digit recognizer<span class="sr-only">(current)</span></a>
+                    <a href="index.html" class="nav-link">Digit recognizer<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a href="about.html" class="nav-link">About the project<span class="sr-only">(current)</span></a>
@@ -33,21 +33,24 @@
         </div>
     </div>
 </nav>
-<div class="container-fluid">
+<div id="mainframe" class="container-fluid">
     <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-2" id="drawpad-handler">
-            <canvas id="drawpad" width="200px" height="200px"></canvas>
-            <div class="row" id="drawpad-buttons">
-                <button id="clear_btn" type="button" class="btn btn-default butt" onclick="clearCanvas();">
-                    <strong>clear</strong>
-                </button>
-                <button id="save_btn" type="button" class="btn btn-default butt" onclick="saveImg();">
-                    <strong>get</strong>
-                </button>
+        <div class="col-md-5 col-sm-6" id="drawpad-handler">
+            <div align="center">
+                <canvas id="drawpad" width="200px" height="200px"></canvas>
             </div>
-            <div class="col-md-1">
-                <img id="result" >
+        </div>
+        <img id="result">
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-sm-6" id="btns-handler">
+            <div align="center">
+                <button type="button" class="btn btn-danger" onclick="clearCanvas();" id="btn">
+                    clear
+                </button>
+                <button type="button" class="btn btn-primary" onclick="saveImg();" id="btn">
+                    detect
+                </button>
             </div>
         </div>
     </div>
