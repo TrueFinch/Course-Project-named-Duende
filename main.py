@@ -1,5 +1,8 @@
 from flask import Flask, render_template, request
+from Model import Model
 import json
+import os
+import base64
 
 app = Flask(__name__)
 
@@ -17,9 +20,11 @@ def about():
 
 @app.route("/hook", methods=["POST", "GET"])
 def get_image():
-    global image_b64
-    if request.method == "POST":
-        image_b64 = request.values["imageBase64"]
-    return json.dumps({
-        'digit': '2'
-    })
+    global prediction
+    if request.method == 'POST':
+        image_b64 = request.values['imageBase64']
+        image_encoded = image_b64.split(',')[1]
+        image = base64.decodebytes(image_encoded.encode('utf-8'))
+        prediction = Model.predict(image)
+
+    return json.dumps(prediction)

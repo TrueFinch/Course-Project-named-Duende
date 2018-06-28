@@ -16,7 +16,7 @@ function saveImg() {
 
         let json = jQuery.parseJSON(response);
 
-        document.getElementById('text-result').innerHTML = 'We think that your digit is ' + json.digit + '. Is it correct?';
+        document.getElementById('text-result').innerHTML = 'We think that your digit is ' + json.answer + '. Is it correct?';
 
 
     });
