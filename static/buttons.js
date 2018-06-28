@@ -1,5 +1,5 @@
 function saveImg() {
-    let digit_image = canvas.toDataURL('img/jpeg');
+    let digit_image = canvas.toDataURL('img/jpg');
 
     document.getElementById('result-handler').style.display = 'inline';
     document.getElementById('result-handler').style.visibility = 'visible';

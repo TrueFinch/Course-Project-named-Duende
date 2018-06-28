@@ -12,7 +12,7 @@ from scipy.ndimage.interpolation import rotate, shift
 from skimage import transform
 
 from FNN import FNN
-# from conv_net import CNN
+
 
 
 class Model(object):

@@ -5,7 +5,7 @@ import os
 import base64
 
 app = Flask(__name__)
-
+model = Model()
 
 @app.route('/')
 @app.route('/index.html')
@@ -24,7 +24,7 @@ def get_image():
     if request.method == 'POST':
         image_b64 = request.values['imageBase64']
         image_encoded = image_b64.split(',')[1]
-        image = base64.decodebytes(image_encoded.encode('utf-8'))
-        prediction = Model.predict(image)
+        my_image = base64.decodebytes(image_encoded.encode('utf-8'))
+        prediction = model.predict(my_image)
 
     return json.dumps(prediction)
