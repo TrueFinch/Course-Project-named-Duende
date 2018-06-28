@@ -30,36 +30,33 @@
         </div>
     </div>
 </nav>
-<div id="mainframe" class="container-fluid">
+<div id="mainframe" class="container-flex   ">
     <div class="row clearfix">
-        <div class="col-md-5 col-sm-5" id="drawpad-handler">
-            <div align="center">
-                <canvas id="drawpad" width="200px" height="200px"></canvas>
-            </div>
-            <div align="center">
-                <p style="text-align: center">
-                    <button type="button" class="btn btn-danger" onclick="clearCanvas();" id="btn">
-                        clear
-                    </button>
-                    <button type="button" class="btn btn-primary" onclick="saveImg();" id="btn">
-                        detect
-                    </button>
-                </p>
-            </div>
+        <div class="col-md-5 col-sm-5" id="drawpad-handler" align="center">
+            <canvas id="drawpad" width="200px" height="200px"></canvas>
+            <br>
+            <p style="text-align: center">
+                <button type="button" class="btn btn-danger" onclick="clearCanvas();" id="btn">
+                    clear
+                </button>
+                <button type="button" class="btn btn-primary" onclick="saveImg();" id="btn" name="detect">
+                    detect
+                </button>
+            </p>
         </div>
         <div class="col-md-3 col-sm-5" id="result-handler">
             <div style="alignment: left">
-                <h2 style="border-bottom: solid"><strong>Result:</strong></h2>
+                <h2 style="border-bottom: solid"><strong>Detecting result:</strong></h2>
                 <div>
                     <p id="text-result"></p>
                 </div>
             </div>
             <div style="alignment: left">
                 <p style="text-align: center">
-                    <button type="button" class="btn btn-success" onclick="showCorrectPredictionScreen();" id="btn">
+                    <button type="button" class="btn btn-success" onclick="showCorrectPredictionScreen();" id="btn" name="yes_btn">
                         Yes
                     </button>
-                    <button type="button" class="btn btn-danger" onclick="showIncorrectPredictionScreen();" id="btn">
+                    <button type="button" class="btn btn-danger" onclick="showIncorrectPredictionScreen();" id="btn" name="no_btn">
                         No
                     </button>
                 </p>
@@ -73,29 +70,28 @@
                 <div id="epic-fail">
                     <h2><strong>Please, choose your digit</strong></h2>
                     <p>to help us prove that service:</p>
-                    <div align="center">
+                    <div id="digit-board" align="center">
                         <div class="radio">
-                            <label class="radio-inline"><input type="radio" name="optradio">1</label>
-                            <label class="radio-inline"><input type="radio" name="optradio">2</label>
-                            <label class="radio-inline"><input type="radio" name="optradio">3</label>
+                            <label class="radio-inline"><input type="radio" name="optradio" value="1">1</label>
+                            <label class="radio-inline"><input type="radio" name="optradio" value="2">2</label>
+                            <label class="radio-inline"><input type="radio" name="optradio" value="3">3</label>
                         </div>
                         <div class="radio">
-                            <label class="radio-inline"><input type="radio" name="optradio">4</label>
-                            <label class="radio-inline"><input type="radio" name="optradio">5</label>
-                            <label class="radio-inline"><input type="radio" name="optradio">6</label>
+                            <label class="radio-inline"><input type="radio" name="optradio" value="4">4</label>
+                            <label class="radio-inline"><input type="radio" name="optradio" value="5">5</label>
+                            <label class="radio-inline"><input type="radio" name="optradio" value="6">6</label>
                         </div>
                         <div class="radio">
-                            <label class="radio-inline"><input type="radio" name="optradio">7</label>
-                            <label class="radio-inline"><input type="radio" name="optradio">8</label>
-                            <label class="radio-inline"><input type="radio" name="optradio">9</label>
+                            <label class="radio-inline"><input type="radio" name="optradio" value="7">7</label>
+                            <label class="radio-inline"><input type="radio" name="optradio" value="8">8</label>
+                            <label class="radio-inline"><input type="radio" name="optradio" value="9">9</label>
                         </div>
-                        <div class="radio">
-                            <label class="radio-inline"><input type="radio" name="optradio">0</label>
-                            <label class="radio-inline"><input type="radio" name="optradio">NAN</label>
+                        <div class="radio" align="center">
+                            <label class="radio-inline"><input type="radio" name="optradio" value="0">0</label>
                         </div>
                     </div>
                     <p style="text-align: center">
-                        <button type="button" class="btn btn-primary" id="btn-conf">
+                        <button type="button" class="btn btn-primary" id="btn-conf" onclick="train();">
                             Confirm
                         </button>
                     </p>

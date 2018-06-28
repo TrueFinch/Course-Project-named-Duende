@@ -14,14 +14,13 @@ from skimage import transform
 from FNN import FNN
 
 
-
 class Model(object):
     def __init__(self):
         """
         Load weights for FNN here. Original weights are loaded from local folder, updated - from Amazon.
         """
         self.params_original = np.load('models/original_weights.npy')[()]
-        # self.params = self.load_weights_amazon('updated_weights.npy')
+        self.params_trained = np.load('models/trained_weights.npy')[()]
 
     @staticmethod
     def process_image(image):
@@ -100,7 +99,7 @@ class Model(object):
         for i in [min(widthlen, heightlen), max(widthlen, heightlen)]:
             for j in [min(widthlen, heightlen), max(widthlen, heightlen)]:
                 resized_img = image.crop(bbox).resize((i, j), Image.NEAREST)
-                resized_image = Image.new('L', (28, 28), 255)
+                resized_image = Image.new('L', (28, 28), 0)
                 resized_image.paste(resized_img, (wstart, hstart))
 
                 angles_ = random.sample(set(angles), 6)
@@ -164,16 +163,18 @@ class Model(object):
             return "Can't predict, when nothing is drawn"
         # net = FNN(self.params)
         net_original = FNN(self.params_original)
+        net_trained = FNN(self.params_trained)
         # cnn = CNN()
         # cnn_original = CNN()
-
+        # TODO: add prediction by trained FNN
         # top_3 = net.predict_single(img_array)
         top_3_original = net_original.predict_single(img_array)
+        top_3_trained = net_trained.predict_single(img_array)
         # top_3_cnn = cnn.predict(img_array, weights='updated')
         # top_3_cnn_original = cnn_original.predict(img_array, weights='original')
-        answer, top_3_original = self.select_answer(top_3_original)
+        answer, top_3_original, top_3_trained = self.select_answer(top_3_original, top_3_trained)
 
-        answers_dict = {'answer': str(answer), 'fnn': top_3_original}
+        answers_dict = {'answer': str(answer), 'fnn_original': top_3_original, 'fnn_trained': top_3_trained}
         # return answer, top_3, top_3_original
         return answers_dict
 
@@ -183,12 +184,12 @@ class Model(object):
         """
         # r = self.save_image(digit, image)
         # print(r)
-        net = FNN(self.params_original)
+        net = FNN(self.params_trained)
         X, y = self.augment(image, digit)
         net.train(X, y)
         # cnn = CNN()
         # cnn.train(X, y)
-        np.save('tmp/updated_weights.npy', net.params)
+        np.save('models/trained_weights.npy', net.params)
 
         # response = self.save_weights_amazon('updated_weights.npy', './tmp/updated_weights.npy')
         #
@@ -200,12 +201,24 @@ class Model(object):
         # return response
 
     @staticmethod
-    def select_answer(top_3_original):
+    def select_answer(top_3_original, top_3_trained):
         """
         Selects best answer from all. In fact only from the trained models, as they are considered to be better than untrained.
         """
         answer = ''
-        answer = str(top_3_original[0][0])
+
+        if int(top_3_original[0][0]) == int(top_3_trained[0][0]):
+            answer = str(top_3_trained[0][0])
+        elif int(top_3_original[0][1]) < 50 and int(top_3_trained[0][1]) < 50:
+            answer = "Can't recognize this as a digit"
+        elif int(top_3_original[0][0]) != int(top_3_trained[0][0]):
+            if int(top_3_original[0][1]) > int(top_3_trained[0][1]):
+                answer = str(top_3_original[0][0])
+            else:
+                answer = str(top_3_trained[0][0])
+
+        # answer = str(top_3_original[0][0])
 
         top_3_original = ['{0} ({1})%'.format(i[0], i[1]) for i in top_3_original]
-        return answer, top_3_original
+        top_3_trained = ['{0} ({1})%'.format(i[0], i[1]) for i in top_3_trained]
+        return answer, top_3_original, top_3_trained
