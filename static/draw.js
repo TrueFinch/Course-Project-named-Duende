@@ -36,10 +36,3 @@ function draw(e) {
 
     context.stroke(); // draw it!
 }
-
-function clearCanvas() {
-    context.clearRect(0, 0, 200, 200);
-    // draw();
-    // document.getElementById("rec_result").innerHTML = "";
-}
-

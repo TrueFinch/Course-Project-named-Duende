@@ -3,10 +3,8 @@
 }
 
 #mainframe {
-    /*padding-left: 5%;*/
-    /*padding-right: 15%;*/
-    margin-left: auto;
-    margin-right: auto;
+    padding-left: 15%;
+    padding-right: 15%;
 }
 
 #drawpad-handler {
@@ -23,17 +21,23 @@
 }
 
 #btn {
-    max-width: 90px;
+    max-width: 120px;
     max-height: 40px;
     min-width: 70px;
     min-height: 12px;
-    width: 10%;
+    width: 25%;
     height: 5%;
     margin-bottom: 9%;
-    text-align: center;
+}
+
+#btn-conf {
+    width: 120px;
+    height: 5%;
+    margin-bottom: 9%;
 }
 
 #result-handler {
+    display: none;
     visibility: hidden;
     margin-top: 20px;
     border-bottom: 1px solid;
@@ -46,7 +50,22 @@
 }
 
 #answer-handler {
+    display: none;
     visibility: hidden;
     margin-top: 20px;
     border-bottom: 1px solid;
+}
+
+#epic-fail {
+    display: none;
+    visibility: hidden;
+    /*visibility: hidden;*/
+    vertical-align: center;
+}
+
+#rampage {
+    display: none;
+    visibility: hidden;
+    /*visibility: visible;*/
+    alignment: center;
 }

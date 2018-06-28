@@ -13,7 +13,7 @@
 </head>
 <body>
 <nav class="navbar navbar-fixed-top sticky-top navbar-expand-lg navbar-dark bg-dark" style="opacity: .93">
-    <div id="mainframe" class="container">
+    <div id="mainframe" class="container-fluid">
         <a href="index.html" class="navbar-brand">
             <img src="../static/logo.svg" alt="Duende project" width="40" height="40">
         </a>
@@ -30,44 +30,47 @@
         </div>
     </div>
 </nav>
-<div id="mainframe" class="container">
-    <div class="row">
-        <div class="col-md-5 col-sm-9" id="drawpad-handler">
+<div id="mainframe" class="container-fluid">
+    <div class="row clearfix">
+        <div class="col-md-5 col-sm-5" id="drawpad-handler">
             <div align="center">
                 <canvas id="drawpad" width="200px" height="200px"></canvas>
             </div>
             <div align="center">
-                <button type="button" class="btn btn-danger" onclick="clearCanvas();" id="btn">
-                    clear
-                </button>
-                <button type="button" class="btn btn-primary" onclick="saveImg();" id="btn">
-                    detect
-                </button>
+                <p style="text-align: center">
+                    <button type="button" class="btn btn-danger" onclick="clearCanvas();" id="btn">
+                        clear
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="saveImg();" id="btn">
+                        detect
+                    </button>
+                </p>
             </div>
         </div>
-        <div class="col-md-3 col-sm-9" id="result-handler">
+        <div class="col-md-3 col-sm-5" id="result-handler">
             <div style="alignment: left">
                 <h2 style="border-bottom: solid"><strong>Result:</strong></h2>
-                <div >
+                <div>
                     <p id="text-result"></p>
-                    <img id="result">
                 </div>
             </div>
             <div style="alignment: left">
-                <button type="button" class="btn btn-success" id="btn">
-                    Yes
-                </button>
-                <button type="button" class="btn btn-danger" id="btn">
-                    No
-                </button>
+                <p style="text-align: center">
+                    <button type="button" class="btn btn-success" onclick="showCorrectPredictionScreen();" id="btn">
+                        Yes
+                    </button>
+                    <button type="button" class="btn btn-danger" onclick="showIncorrectPredictionScreen();" id="btn">
+                        No
+                    </button>
+                </p>
             </div>
         </div>
-        <div class="col-md-4 col-sm-9" id="answer-handler">
+        <div class="col-md-4 col-sm-5" id="answer-handler">
             <div style="alignment: left">
-                <div id="rampage" style="alignment: center; display: none">
-                    <h3>Another number was guessed - the world can sleep peacefully now</h3>
+                <div id="rampage">
+                    <h3 style="text-align: center">Another number was guessed - the world can sleep peacefully now!</h3>
                 </div>
-                <div id="epic-fail" style="alignment: left; display: none   ;">
+                <div id="epic-fail">
                     <h2><strong>Please, choose your digit</strong></h2>
                     <p>to help us prove that service:</p>
                     <div align="center">
@@ -81,16 +84,21 @@
                             <label class="radio-inline"><input type="radio" name="optradio">5</label>
                             <label class="radio-inline"><input type="radio" name="optradio">6</label>
                         </div>
-                        <div class="radio disabled">
+                        <div class="radio">
                             <label class="radio-inline"><input type="radio" name="optradio">7</label>
                             <label class="radio-inline"><input type="radio" name="optradio">8</label>
                             <label class="radio-inline"><input type="radio" name="optradio">9</label>
                         </div>
-                        <div class="radio disabled">
+                        <div class="radio">
                             <label class="radio-inline"><input type="radio" name="optradio">0</label>
                             <label class="radio-inline"><input type="radio" name="optradio">NAN</label>
                         </div>
                     </div>
+                    <p style="text-align: center">
+                        <button type="button" class="btn btn-primary" id="btn-conf">
+                            Confirm
+                        </button>
+                    </p>
                 </div>
             </div>
         </div>
