@@ -46,17 +46,44 @@
         </div>
         <div class="col-md-3 col-sm-5" id="result-handler">
             <div style="alignment: left">
-                <h2 style="border-bottom: solid"><strong>Detecting result:</strong></h2>
+                <h2 style="border-bottom: solid" id="text-result"><strong>Detected digit is </strong></h2>
+            </div>
+            <div class="container" id="result-table" style="display: none; font-size: 12pt;">
                 <div>
-                    <p id="text-result"></p>
+                    <div class="col">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>FNN</th>
+                                <th>Trained FNN</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td id="fnn1"></td>
+                                <td id="fnn_t1"></td>
+                            </tr>
+                            <tr>
+                                <td id="fnn2"></td>
+                                <td id="fnn_t2"></td>
+                            </tr>
+                            <tr>
+                                <td id="fnn3"></td>
+                                <td id="fnn_t3"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div style="alignment: left">
                 <p style="text-align: center">
-                    <button type="button" class="btn btn-success" onclick="showCorrectPredictionScreen();" id="btn" name="yes_btn">
+                    <button type="button" class="btn btn-success" onclick="showCorrectPredictionScreen();" id="btn"
+                            name="yes_btn">
                         Yes
                     </button>
-                    <button type="button" class="btn btn-danger" onclick="showIncorrectPredictionScreen();" id="btn" name="no_btn">
+                    <button type="button" class="btn btn-danger" onclick="showIncorrectPredictionScreen();" id="btn"
+                            name="no_btn">
                         No
                     </button>
                 </p>
@@ -91,11 +118,14 @@
                         </div>
                     </div>
                     <p style="text-align: center">
-                        <button type="button" class="btn btn-primary" id="btn-conf" onclick="train();">
+                        <button type="button" class="btn btn-primary" id="btn-conf" onclick="sendToTrain();">
                             Confirm
                         </button>
                     </p>
                 </div>
+            </div>
+            <div>
+                <p id="status"></p>
             </div>
         </div>
     </div>

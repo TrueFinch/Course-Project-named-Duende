@@ -178,27 +178,25 @@ class Model(object):
         # return answer, top_3, top_3_original
         return answers_dict
 
-    def train(self, image, digit):
+    def train(self, image, digit, times):
         """
         Models are trained. Weights on Amazon are updated.
         """
+        global net
+        params = self.params_trained
+        for i in range(times):
+            net = FNN(params)
+            X, y = self.augment(image, digit)
+            net.train(X, y)
+            params = net.params
         # r = self.save_image(digit, image)
         # print(r)
-        net = FNN(self.params_trained)
-        X, y = self.augment(image, digit)
-        net.train(X, y)
+        # net = FNN(self.params_trained)
+        # net.train(X, y)
         # cnn = CNN()
-        # cnn.train(X, y)
+        # cnn.sendToTrain(X, y)
         np.save('models/trained_weights.npy', net.params)
-
-        # response = self.save_weights_amazon('updated_weights.npy', './tmp/updated_weights.npy')
-        #
-        # response = self.save_weights_amazon('data-all_2_updated.chkp.meta', './tmp/data-all_2_updated.chkp')
-        # response = self.save_weights_amazon('data-all_2_updated.chkp.index', './tmp/data-all_2_updated.chkp')
-        # response = self.save_weights_amazon('data-all_2_updated.chkp.data-00000-of-00001',
-        #                                     './tmp/data-all_2_updated.chkp')
-
-        # return response
+        self.params_trained = net.params
 
     @staticmethod
     def select_answer(top_3_original, top_3_trained):

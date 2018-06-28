@@ -39,4 +39,5 @@ def train_net():
         image_encoded = image_b64.split(',')[1]
         my_image = base64.decodebytes(image_encoded.encode('utf-8'))
         digit = request.values['answer']
-        model.train(my_image, digit)
+        model.train(my_image, digit, 1000)
+    return 'Trained'
