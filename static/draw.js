@@ -22,7 +22,7 @@ function draw(e) {
 
     if (e.buttons !== 1) return; // if mouse is pressed.....
 
-    var color = "#FFFFFF";
+    let color = "#FFFFFF";
 
     context.beginPath(); // begin the drawing path
 
@@ -39,7 +39,7 @@ function draw(e) {
 
 function clearCanvas() {
     context.clearRect(0, 0, 200, 200);
-    draw();
+    // draw();
     // document.getElementById("rec_result").innerHTML = "";
 }
 

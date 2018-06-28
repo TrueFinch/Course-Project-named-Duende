@@ -21,6 +21,5 @@ def get_image():
     if request.method == "POST":
         image_b64 = request.values["imageBase64"]
     return json.dumps({
-        'digit': 'some digit',
-        'image': image_b64
+        'digit': '2'
     })

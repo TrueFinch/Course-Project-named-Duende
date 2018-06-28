@@ -3,11 +3,15 @@
 }
 
 #mainframe {
-    padding-left: 15%;
-    padding-right: 15%;
+    /*padding-left: 5%;*/
+    /*padding-right: 15%;*/
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #drawpad-handler {
+    margin-top: 20px;
+    border-bottom: 1px solid;
     position: relative;
     alignment: center;
 }
@@ -16,7 +20,6 @@
     position: relative;
     border: 1px solid black;
     background: #333333;
-    display: block;
 }
 
 #btn {
@@ -24,17 +27,26 @@
     max-height: 40px;
     min-width: 70px;
     min-height: 12px;
-    width: 25%;
+    width: 10%;
     height: 5%;
-    margin: 2%;
+    margin-bottom: 9%;
     text-align: center;
 }
 
 #result-handler {
+    visibility: hidden;
+    margin-top: 20px;
+    border-bottom: 1px solid;
     position: relative;
     alignment: center;
 }
 
 #text-result {
     alignment: left;
+}
+
+#answer-handler {
+    visibility: hidden;
+    margin-top: 20px;
+    border-bottom: 1px solid;
 }
