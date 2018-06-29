@@ -20,7 +20,7 @@
 #drawpad {
     position: relative;
     border: 1px solid black;
-    background: #333333;
+    background: #000000;
     padding: 0;
     margin: auto;
     display: block;

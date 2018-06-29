@@ -2,13 +2,8 @@ import uuid
 import random
 import numpy as np
 
-# import boto
-# import boto3
-# from boto.s3.key import Key
-# from boto.s3.connection import S3Connection
 from codecs import open
 from PIL import Image
-from scipy.ndimage.interpolation import rotate, shift
 from skimage import transform
 
 from FNN import FNN
@@ -115,41 +110,6 @@ class Model(object):
         label_array = np.array(labs_add)
         return image_array, label_array
 
-    # def load_weights_amazon(self, filename):
-    #     """
-    #     Load weights from Amazon. This is npy. file, which neads to be read with np.load.
-    #     """
-    #     s3 = boto3.client('s3', aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],
-    #                       aws_secret_access_key=os.environ['AWS_SECRET_ACCESS_KEY'])
-    #     s3.download_file('digit_draw_recognize', filename, os.path.join('tmp/', filename))
-    #     return np.load(os.path.join('tmp/', filename))[()]
-
-    # def save_weights_amazon(self, filename, file):
-    #     """
-    #     Save weights to Amazon.
-    #     """
-    #     REGION_HOST = 's3-external-1.amazonaws.com'
-    #     conn = S3Connection(os.environ['AWS_ACCESS_KEY_ID'], os.environ['AWS_SECRET_ACCESS_KEY'], host=REGION_HOST)
-    #     bucket = conn.get_bucket('digit_draw_recognize')
-    #     k = Key(bucket)
-    #     k.key = filename
-    #     k.set_contents_from_filename('tmp/' + filename)
-    #     return ('Weights saved')
-
-    # def save_image(self, drawn_digit, image):
-    #     """
-    #     Save image on Amazon. Only existing files can be uploaded, so the image is saved in a temporary folder.
-    #     """
-    #     filename = 'digit' + str(drawn_digit) + '__' + str(uuid.uuid1()) + '.jpg'
-    #     with open('tmp/' + filename, 'wb') as f:
-    #         f.write(image)
-    #     REGION_HOST = 's3-external-1.amazonaws.com'
-    #     conn = S3Connection(os.environ['AWS_ACCESS_KEY_ID'], os.environ['AWS_SECRET_ACCESS_KEY'], host=REGION_HOST)
-    #     bucket = conn.get_bucket('digit_draw_recognize')
-    #     k = Key(bucket)
-    #     k.key = filename
-    #     k.set_contents_from_filename('tmp/' + filename)
-    #     return ('Image saved successfully with the name {0}'.format(filename))
     def predict(self, image):
         """
         Predicting image. If nothing is drawn, returns a message; otherwise 4 models are initialized and they make predictions.
@@ -161,21 +121,13 @@ class Model(object):
         img_array = self.process_image(image)
         if img_array is None:
             return "Can't predict, when nothing is drawn"
-        # net = FNN(self.params)
         net_original = FNN(self.params_original)
         net_trained = FNN(self.params_trained)
-        # cnn = CNN()
-        # cnn_original = CNN()
-        # TODO: add prediction by trained FNN
-        # top_3 = net.predict_single(img_array)
         top_3_original = net_original.predict_single(img_array)
         top_3_trained = net_trained.predict_single(img_array)
-        # top_3_cnn = cnn.predict(img_array, weights='updated')
-        # top_3_cnn_original = cnn_original.predict(img_array, weights='original')
         answer, top_3_original, top_3_trained = self.select_answer(top_3_original, top_3_trained)
 
         answers_dict = {'answer': str(answer), 'fnn_original': top_3_original, 'fnn_trained': top_3_trained}
-        # return answer, top_3, top_3_original
         return answers_dict
 
     def train(self, image, digit, times):
@@ -189,12 +141,6 @@ class Model(object):
             X, y = self.augment(image, digit)
             net.train(X, y)
             params = net.params
-        # r = self.save_image(digit, image)
-        # print(r)
-        # net = FNN(self.params_trained)
-        # net.train(X, y)
-        # cnn = CNN()
-        # cnn.sendToTrain(X, y)
         np.save('models/trained_weights.npy', net.params)
         self.params_trained = net.params
 
@@ -214,8 +160,6 @@ class Model(object):
                 answer = str(top_3_original[0][0])
             else:
                 answer = str(top_3_trained[0][0])
-
-        # answer = str(top_3_original[0][0])
 
         top_3_original = ['{0} ({1})%'.format(i[0], i[1]) for i in top_3_original]
         top_3_trained = ['{0} ({1})%'.format(i[0], i[1]) for i in top_3_trained]

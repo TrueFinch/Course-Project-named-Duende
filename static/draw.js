@@ -22,7 +22,7 @@ function draw(e) {
 
     if (e.buttons !== 1) return; // if mouse is pressed.....
 
-    let color = "#FFFFFF";
+    let color = "#ffffff";
 
     context.beginPath(); // begin the drawing path
 
